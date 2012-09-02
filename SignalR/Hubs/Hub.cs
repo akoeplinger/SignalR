@@ -8,6 +8,12 @@ namespace SignalR.Hubs
     /// </summary>
     public abstract class Hub : IHub, IConnected, IDisconnect
     {
+        protected Hub()
+        {
+            this.Clients = new InvalidHubUsagePreventer();
+            this.Caller = new InvalidHubUsagePreventer();
+        }
+
         /// <summary>
         /// A dynamic object that represents all clients connected to this hub (not hub instance).
         /// </summary>
