@@ -3,9 +3,9 @@ using System.Dynamic;
 
 namespace SignalR.Hubs
 {
-    public class InvalidHubUsagePreventer : DynamicObject
+    internal class NullClientProxy : DynamicObject
     {
-        private const string InvalidHubUsageMessage = "You are using a hub instance that was not created by SignalR, which is an unsupported scenario! Use 'GlobalHost.GlobalHost.ConnectionManager.GetHubContext<T>()' to get ahold of the context object for a hub that let's you do broadcasting.";
+        private const string InvalidHubUsageMessage = "Using a hub instance not created by the hub pipeline is unsupported.";
 
         public override bool TryGetMember(GetMemberBinder binder, out object result)
         {
